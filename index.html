@@ -3,271 +3,563 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2025 스프링 페스티벌</title>
+  <title>Spring Festival 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --black: #0d0d0d;
+      --white: #fafaf8;
+      --accent: #c8a96e;
+      --muted: #6b6b6b;
+      --border: rgba(200,169,110,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fdf6f0;
-      color: #1a1a1a;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(135deg, #ff6b6b, #feca57);
-      color: #fff;
-      text-align: center;
-      padding: 80px 20px 60px;
-    }
-
-    header .badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.25);
-      border-radius: 999px;
-      padding: 6px 18px;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      margin-bottom: 20px;
-    }
-
-    header h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      max-width: 480px;
-      margin: 0 auto 32px;
-    }
-
-    header .cta {
-      display: inline-block;
-      background: #fff;
-      color: #ff6b6b;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 14px 36px;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: transform 0.15s;
-    }
-
-    header .cta:hover { transform: scale(1.05); }
-
-    .info-bar {
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
-      background: #fff;
-      border-bottom: 1px solid #f0e8e0;
-    }
-
-    .info-bar .item {
-      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      padding: 20px 36px;
-      border-right: 1px solid #f0e8e0;
+      padding: 20px 48px;
+      background: rgba(13,13,13,0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .info-bar .item:last-child { border-right: none; }
-
-    .info-bar .icon { font-size: 1.4rem; }
-
-    .info-bar .label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.06em; }
-    .info-bar .value { font-size: 0.95rem; font-weight: 600; }
-
-    section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 64px 24px;
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
     }
 
-    section h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 32px;
-      text-align: center;
+    nav .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
     }
 
-    .program-grid {
+    nav .nav-links a {
+      color: rgba(250,250,248,0.65);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(200,169,110,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(200,169,110,0.07) 0%, transparent 60%);
+    }
+
+    .hero-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .hero-line:nth-child(1) { left: 25%; }
+    .hero-line:nth-child(2) { left: 50%; }
+    .hero-line:nth-child(3) { left: 75%; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .hero-desc {
+      max-width: 360px;
+      font-size: 0.95rem;
+      color: rgba(250,250,248,0.55);
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent);
+      color: var(--black);
+    }
+
+    .hero-cta svg { transition: transform 0.25s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    /* ── META BAR ── */
+    .meta-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .program-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px 24px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    .meta-item {
+      padding: 32px 40px;
+      border-right: 1px solid var(--border);
     }
 
-    .program-card .time {
-      font-size: 0.8rem;
-      color: #ff6b6b;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+    .meta-item:last-child { border-right: none; }
+
+    .meta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
       margin-bottom: 8px;
     }
 
-    .program-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
-    .program-card p  { font-size: 0.9rem; color: #666; line-height: 1.6; }
-
-    .register {
-      background: linear-gradient(135deg, #ff6b6b, #feca57);
-      border-radius: 24px;
-      text-align: center;
-      padding: 56px 24px;
-      color: #fff;
-      max-width: 720px;
-      margin: 0 auto 80px;
+    .meta-value {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
     }
 
-    .register h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
-    .register p  { font-size: 1rem; opacity: 0.9; margin-bottom: 28px; }
+    /* ── SECTION ── */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 120px 48px;
+    }
 
-    .register form {
+    .section-label {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 48px;
     }
 
-    .register input[type="text"],
-    .register input[type="email"] {
-      padding: 13px 18px;
-      border-radius: 999px;
-      border: none;
-      font-size: 0.95rem;
-      min-width: 220px;
-      outline: none;
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
-    .register button {
-      padding: 13px 30px;
-      border-radius: 999px;
-      border: none;
-      background: #1a1a1a;
-      color: #fff;
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background 0.15s;
+      margin-bottom: 56px;
+      line-height: 1.2;
     }
 
-    .register button:hover { background: #333; }
+    /* ── TIMELINE ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
 
-    footer {
-      text-align: center;
-      padding: 28px;
+    .tl-item {
+      display: grid;
+      grid-template-columns: 100px 1px 1fr;
+      gap: 0 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      transition: background 0.2s;
+    }
+
+    .tl-item:first-child { border-top: 1px solid var(--border); }
+
+    .tl-time {
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      padding-top: 4px;
+      text-align: right;
+    }
+
+    .tl-divider {
+      background: var(--border);
+      position: relative;
+    }
+
+    .tl-divider::before {
+      content: '';
+      position: absolute;
+      top: 6px; left: 50%;
+      transform: translateX(-50%);
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .tl-content { padding-left: 8px; }
+
+    .tl-content h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .tl-content p {
+      font-size: 0.88rem;
+      color: rgba(250,250,248,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── REGISTER ── */
+    .register-wrap {
+      border: 1px solid var(--border);
+      padding: 72px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .register-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .register-copy p {
+      font-size: 0.92rem;
+      color: rgba(250,250,248,0.5);
+      line-height: 1.8;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .field input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      font-size: 0.95rem;
+      color: var(--white);
+      outline: none;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: border-color 0.2s;
+    }
+
+    .field input::placeholder { color: rgba(250,250,248,0.25); }
+    .field input:focus { border-color: var(--accent); }
+
+    .submit-btn {
+      margin-top: 8px;
+      padding: 16px;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 0.85rem;
-      color: #aaa;
-      border-top: 1px solid #f0e8e0;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .submit-btn:hover { opacity: 0.85; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent);
+      color: var(--black);
+      padding: 14px 28px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav .nav-links { display: none; }
+      .hero { padding: 0 24px 60px; }
+      .meta-bar { grid-template-columns: 1fr 1fr; }
+      .meta-item { border-bottom: 1px solid var(--border); }
+      .section { padding: 80px 24px; }
+      .register-wrap { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+      footer { padding: 24px; }
+      .tl-item { grid-template-columns: 80px 1px 1fr; gap: 0 20px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="badge">🌸 2025 봄 한정 이벤트</div>
-    <h1>스프링 페스티벌<br>2025</h1>
-    <p>봄의 시작을 함께 즐기는 하루. 공연, 체험, 푸드까지 한 자리에서 만나보세요.</p>
-    <a href="#register" class="cta">지금 신청하기</a>
-  </header>
+  <nav>
+    <span class="logo">Spring Fest</span>
+    <ul class="nav-links">
+      <li><a href="#program">Program</a></li>
+      <li><a href="#register">Register</a></li>
+    </ul>
+  </nav>
 
-  <div class="info-bar">
-    <div class="item">
-      <span class="icon">📅</span>
-      <div>
-        <div class="label">날짜</div>
-        <div class="value">2025년 4월 26일 (토)</div>
-      </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+
+    <div class="hero-tag">2025 봄 한정 이벤트</div>
+    <h1>Spring<br><em>Festival</em></h1>
+
+    <div class="hero-sub">
+      <p class="hero-desc">봄의 시작을 함께 즐기는 하루.<br>공연, 체험, 푸드까지 한 자리에서 만나보세요.</p>
+      <a href="#register" class="hero-cta">
+        지금 신청하기
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
-    <div class="item">
-      <span class="icon">🕙</span>
-      <div>
-        <div class="label">시간</div>
-        <div class="value">오전 10:00 – 오후 6:00</div>
-      </div>
+  </section>
+
+  <!-- META BAR -->
+  <div class="meta-bar">
+    <div class="meta-item">
+      <div class="meta-label">Date</div>
+      <div class="meta-value">2025년 4월 26일 (토)</div>
     </div>
-    <div class="item">
-      <span class="icon">📍</span>
-      <div>
-        <div class="label">장소</div>
-        <div class="value">서울 올림픽공원 잔디마당</div>
-      </div>
+    <div class="meta-item">
+      <div class="meta-label">Time</div>
+      <div class="meta-value">10:00 — 18:00</div>
     </div>
-    <div class="item">
-      <span class="icon">🎟️</span>
-      <div>
-        <div class="label">입장료</div>
-        <div class="value">무료</div>
+    <div class="meta-item">
+      <div class="meta-label">Venue</div>
+      <div class="meta-value">서울 올림픽공원 잔디마당</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Admission</div>
+      <div class="meta-value">무료 입장</div>
+    </div>
+  </div>
+
+  <!-- PROGRAM -->
+  <div class="section" id="program">
+    <div class="section-label">Program</div>
+    <h2>하루의 흐름</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">10:00 AM</div>
+        <div class="tl-divider"></div>
+        <div class="tl-content">
+          <h3>오프닝 세레머니</h3>
+          <p>봄을 알리는 퍼포먼스와 함께 축제의 문을 엽니다.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:30 AM</div>
+        <div class="tl-divider"></div>
+        <div class="tl-content">
+          <h3>로컬 푸드 마켓</h3>
+          <p>제철 재료로 만든 건강한 먹거리와 음료를 즐기세요.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">01:00 PM</div>
+        <div class="tl-divider"></div>
+        <div class="tl-content">
+          <h3>라이브 버스킹</h3>
+          <p>인디 아티스트들의 감성 공연이 잔디마당을 가득 채웁니다.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">03:00 PM</div>
+        <div class="tl-divider"></div>
+        <div class="tl-content">
+          <h3>플라워 아트 체험</h3>
+          <p>꽃을 직접 골라 나만의 미니 화분을 만들어 가져가세요.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">04:30 PM</div>
+        <div class="tl-divider"></div>
+        <div class="tl-content">
+          <h3>포토존 & 경품 추첨</h3>
+          <p>인생샷 명소에서 사진을 찍고 푸짐한 경품에 도전하세요.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">05:30 PM</div>
+        <div class="tl-divider"></div>
+        <div class="tl-content">
+          <h3>클로징 파티</h3>
+          <p>노을 아래 함께하는 마지막 공연으로 하루를 마무리합니다.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <section>
-    <h2>프로그램 일정</h2>
-    <div class="program-grid">
-      <div class="program-card">
-        <div class="time">10:00 AM</div>
-        <h3>오프닝 세레머니</h3>
-        <p>봄을 알리는 퍼포먼스와 함께 축제의 문을 엽니다.</p>
+  <!-- REGISTER -->
+  <div class="section" id="register" style="padding-top: 0;">
+    <div class="section-label">Register</div>
+    <div class="register-wrap">
+      <div class="register-copy">
+        <h2>사전 신청으로<br>특별 혜택을</h2>
+        <p>신청하신 분께 웰컴 키트와<br>우선 입장 혜택을 드립니다.</p>
       </div>
-      <div class="program-card">
-        <div class="time">11:30 AM</div>
-        <h3>로컬 푸드 마켓</h3>
-        <p>제철 재료로 만든 건강한 먹거리와 음료를 즐기세요.</p>
-      </div>
-      <div class="program-card">
-        <div class="time">01:00 PM</div>
-        <h3>라이브 버스킹</h3>
-        <p>인디 아티스트들의 감성 공연이 잔디마당을 가득 채웁니다.</p>
-      </div>
-      <div class="program-card">
-        <div class="time">03:00 PM</div>
-        <h3>플라워 아트 체험</h3>
-        <p>꽃을 직접 골라 나만의 미니 화분을 만들어 가져가세요.</p>
-      </div>
-      <div class="program-card">
-        <div class="time">04:30 PM</div>
-        <h3>포토존 & 경품 추첨</h3>
-        <p>인생샷 명소에서 사진을 찍고 푸짐한 경품에 도전하세요.</p>
-      </div>
-      <div class="program-card">
-        <div class="time">05:30 PM</div>
-        <h3>클로징 파티</h3>
-        <p>노을 아래 함께하는 마지막 공연으로 하루를 마무리합니다.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="register" style="padding-top: 0;">
-    <div class="register">
-      <h2>사전 신청하기</h2>
-      <p>신청하신 분께 웰컴 키트와 우선 입장 혜택을 드립니다.</p>
-      <form onsubmit="handleSubmit(event)">
-        <input type="text" placeholder="이름" required />
-        <input type="email" placeholder="이메일 주소" required />
-        <button type="submit">신청 완료</button>
+      <form class="register-form" onsubmit="handleSubmit(event)">
+        <div class="field">
+          <label>이름</label>
+          <input type="text" placeholder="홍길동" required />
+        </div>
+        <div class="field">
+          <label>이메일</label>
+          <input type="email" placeholder="hello@example.com" required />
+        </div>
+        <button type="submit" class="submit-btn">신청 완료 →</button>
       </form>
     </div>
-  </section>
+  </div>
 
   <footer>
-    © 2025 스프링 페스티벌 운영팀 · 문의: hello@springfest.kr
+    <span class="logo">Spring Fest '25</span>
+    <p>© 2025 스프링 페스티벌 운영팀 · hello@springfest.kr</p>
   </footer>
+
+  <div class="toast" id="toast">신청이 완료되었습니다 ✦</div>
 
   <script>
     function handleSubmit(e) {
       e.preventDefault();
-      alert('신청이 완료되었습니다! 확인 메일을 보내드릴게요 🌸');
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
       e.target.reset();
     }
   </script>
