@@ -356,6 +356,8 @@
         }
 
         list.innerHTML = '';
+        let defaultEl = null;
+        let defaultCh = null;
         json.data.channels.forEach(ch => {
           const name = ch.name || ch.id;
           const li = document.createElement('li');
@@ -365,7 +367,9 @@
           li.dataset.name = name;
           li.addEventListener('click', () => selectChannel(ch.id, name, li));
           list.appendChild(li);
+          if (ch.id === 'C0ATEPVKTTK') { defaultEl = li; defaultCh = { id: ch.id, name }; }
         });
+        if (defaultEl && defaultCh) selectChannel(defaultCh.id, defaultCh.name, defaultEl);
       } catch {
         document.getElementById('channelList').innerHTML =
           '<li class="loading-channels">오류: 채널 로드 실패</li>';
